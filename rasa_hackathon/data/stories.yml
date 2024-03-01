@@ -1,0 +1,58 @@
+version: "3.1"
+
+stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
+
+  - story: User requests a book recommendation with genre and mood
+    steps:
+      - intent: request_recommendation
+        entities:
+          - genre: fantasy
+          - mood: magical
+      - action: action_search_books
+
+  - story: User requests a book recommendation with genre only
+    steps:
+      - intent: request_recommendation
+        entities:
+          - genre: action
+      - action: action_search_books
+
+  - story: User requests a book recommendation with mood only
+    steps:
+      - intent: request_recommendation
+        entities:
+          - mood: suspenseful
+      - action: action_search_books
+
+  - story: Recommend Harry Potter for a sad mood
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_recommend_harry_potter

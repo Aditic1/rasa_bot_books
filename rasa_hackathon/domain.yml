@@ -1,0 +1,145 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - request_book_recommendation
+  - book_details
+  - feedback
+  - latest_book_releases
+  - popular_authors
+  - search_book
+  - ask_weather
+  - ask_builder
+  - ask_restaurant
+  - handleinsult
+  - telljoke
+  - ask_wherefrom
+  - ask_howold
+  - ask_whoami
+  - ask_languagesbot
+  - ask_whatismyname
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+
+  utter_goodbye:
+    - text: "Goodbye! Have a great day ahead."
+
+  utter_affirm:
+    - text: "Great to hear!"
+
+  utter_deny:
+    - text: "Alright."
+
+  utter_happy:
+    - text: "I'm glad to hear that you're feeling great!"
+
+  utter_cheer_up:
+    - text: "I'm sorry to hear that. Maybe a joke will cheer you up: ."
+
+  utter_did_that_help:
+    - text: "I hope that helped!"
+
+  utter_book_recommendation:
+    - text: "Sure! Here's a book recommendation for you: [To Kill a Mockingbird] by [J.K. Rowling]."
+
+  utter_book_details:
+    - text: "Here are the details about [BOOK TITLE]."
+
+  utter_feedback_received:
+    - text: "Thank you for your feedback."
+
+  utter_latest_book_releases:
+    - text: "Here are the latest book releases: [To Kill a Mockingbird]."
+
+  utter_popular_authors:
+    - text: "Some popular authors include [J.K. Rowling], [J.K. Rowling], and [J.K. Rowling]."
+
+  utter_search_book:
+    - text: "Searching for books similar to [To Kill a Mockingbird]."
+
+  utter_weather_info:
+    - text: "The weather today is sunny."
+
+  utter_builder_info:
+    - text: "I'm a chatbot developed by Rasa."
+
+  utter_restaurant_info:
+    - text: "I am sorry I can’t recommend you a restaurant as I usually cook at home."
+
+  utter_insult_response:
+    - text: "I'm sorry if I've upset you. Let's keep the conversation respectful."
+
+  utter_joke:
+    - text: "Why couldn't the bicycle stand up by itself? Because it was two-tired!"
+
+  utter_wherefrom:
+    - text: "I'm from the digital world, here to assist you!"
+
+  utter_howold:
+    - text: "I'm ageless in digital years!"
+
+  utter_whoami:
+    - text: "You are you! And that's what matters."
+
+  utter_languages:
+    - text: "I can spell baguette in French, but unfortunately English is the only language I can answer you in."
+    - text: "I am in the process of learning, but at the moment I can only speak English."
+
+  utter_whatismyname:
+    - text: "It most probably is the one that your parents have chosen for you."
+
+entities:
+  - book
+  - author
+
+slots:
+  book:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: book
+
+  author:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: author
+
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_affirm
+  - utter_deny
+  - utter_happy
+  - utter_cheer_up
+  - utter_did_that_help
+  - action_search_books
+  - action_search_book_details
+  - action_gather_feedback
+  - action_latest_book_releases
+  - action_popular_authors
+  - action_search_similar_books
+  - action_provide_weather_info
+  - action_provide_builder_info
+  - action_provide_restaurant_info
+  - action_handle_insult
+  - action_tell_joke
+  - action_provide_origin_info
+  - action_provide_age_info
+  - action_provide_identity_info
+  - action_provide_languages_info
+  - action_provide_name_info
+
+templates:
+  utter_ask_genre:
+    - text: "What genre of books are you interested in?"
+  # Define other necessary templates here

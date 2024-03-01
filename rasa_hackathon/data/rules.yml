@@ -1,0 +1,75 @@
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+        action: utter_goodbye
+
+  - rule: Respond to greeting and happy mood
+    steps:
+      - intent: greet
+        action: utter_greet
+      - or:
+          - intent: mood_great
+            action: utter_happy
+
+ - rule: Respond to greeting, unhappy mood, and offer help
+   steps:
+     - intent: greet
+       action: utter_greet
+     - or:
+         - intent: mood_unhappy
+           action: utter_cheer_up
+     - action: utter_did_that_help
+     - or:
+         - intent: affirm
+           action: utter_happy
+
+ - rule: Respond to greeting, unhappy mood, and decline help
+   steps:
+     - intent: greet
+       action: utter_greet
+     - or:
+         - intent: mood_unhappy
+           action: utter_cheer_up
+     - action: utter_did_that_help
+     - or:
+         - intent: deny
+           action: utter_goodbye
+
+ - rule: Recommend Harry Potter if user's mood is sad
+   condition:
+     - active_loop: null
+     - intent: greet
+     - intent: mood_unhappy
+   steps:
+     - action: utter_recommend_harry_potter
+
+ - rule: Recommend a book based on genre and mood
+   condition:
+     - active_loop: null
+     - intent: request_recommendation
+     - slot_was_set:
+         - genre: true
+         - mood: true
+   steps:
+     - action: action_search_books
+
+ - rule: Recommend a book based on genre only
+   condition:
+     - active_loop: null
+     - intent: request_recommendation
+     - slot_was_set:
+         - genre: true
+         - mood: false
+   steps:
+     - action: action_search_books
+
+ - rule: Recommend a book based on mood only
+   condition:
+     - active_loop: null
+     - intent: request_recommendation
+     - slot_was_set:
+         - genre: false
+         - mood: true
+   steps:
+     - action: action_search_books
